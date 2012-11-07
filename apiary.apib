@@ -1,62 +1,110 @@
-HOST: http://www.api.telecontrol.com.br/
+HOST: http://api.telecontrol.com.br/posvenda
 
---- API Telecontrol v1.0 ---
+--- PósVenda API v1 ---
 ---
-Bem vindo a Telecontrol API / RestFull
----
-
-GET /familia
-< 200
-< Content-Type: application/
-< Hostname: telecontrol.com.br
-{ [
-    {
-        "familia": 1015,
-        "fabrica": 10,
-        "descricao": "Voip",
-        "linha": null,
-        "mao_de_obra_adicional_distribuidor": "0",
-        "mao_de_obra_familia": null,
-        "codigo_familia": null,
-        "paga_km": null,
-        "ativo": true
-    }
-]}
-
----
-Teste
+Bem-vindo à documentação da API do sistema Pós Venda.
 ---
 
-POST /familia
+--
+Linhas
+Esta funcionalidade está disponível apenas para a Telecontrol, administradora do sistema.
+--
+Lista linhas cadastradas para o fabricante.
+GET /linhas
+> fabrica: 9999999
 < 200
 < Content-Type: application/json
-{ [
-    {
-        "familia": 1015,
-        "fabrica": 10,
-        "descricao": "Voip",
-        "linha": null,
-        "mao_de_obra_adicional_distribuidor": "0",
-        "mao_de_obra_familia": null,
-        "codigo_familia": null,
-        "paga_km": null,
-        "ativo": true
-    }
-] }
+[
+    {"linha":"9999998", "fabrica":"9999999", "nome": "Nome da linha A"},
+    {"linha":"9999999", "fabrica":"9999999", "nome": "Nome da linha B"}
+]
 
-DELETE /familia/
+
+Lista os dados da linha especificada em id_Linha
+GET /linhas/id/id_Linha
+> fabrica: 9999999
 < 200
 < Content-Type: application/json
-{ [
-    {
-        "familia": 1015,
-        "fabrica": 10,
-        "descricao": "Voip",
-        "linha": null,
-        "mao_de_obra_adicional_distribuidor": "0",
-        "mao_de_obra_familia": null,
-        "codigo_familia": null,
-        "paga_km": null,
-        "ativo": true
-    }
-] }
+[
+    {"linha": 9999997, "fabrica": 9999999, "nome": "Nome da linha A"}
+]
+
+
+Salva uma nova linha
+POST /linhas
+> fabrica: 9999999
+> Content-Type: application/json
+{ "nome":"Nome da linha" }
+< 201
+< Content-Type: application/json
+{ "status": "created", "url": "/linhas/id/id_inserido" }
+
+Altera dados de uma linha
+PUT /linhas/id/id_Linha
+> fabrica: 9999999
+> Content-Type: application/json
+{ "nome":"Nome da linha" }
+< 201
+< Content-Type: application/json
+{ "status": "modified", "url": "/linhas/id/id_inserido" }
+
+Exclui uma linha
+DELETE /linhas/id/id_Linha
+> fabrica: 9999999
+< 200
+< Content-Type: application/json
+{ "status": "deleted" }
+
+
+--
+Famílias
+Permite as ações de manutenção de Famílias do fabricante
+--
+Lista as famílias
+GET /familias
+> fabrica: 9999999
+< 200
+< Content-Type: application/json
+[
+    {"familia": 9999996, "fabrica": 9999999, "descricao": "Familia A", "linha": 9999999},
+    {"familia": 9999995, "fabrica": 9999999, "descricao": "Familia B", "linha": 9999999},
+    {"familia": 9999994, "fabrica": 9999999, "descricao": "Familia C", "linha": 9999998}
+]
+
+
+Lista os dados da família especificada em id_Familia
+GET /familias/id/id_Familia
+> fabrica: 9999999
+> Content-Type: application/json
+{ "id":"9999993" }
+< 200
+< Content-Type: application/json
+[
+    {"familia": 9999993, "fabrica": 9999999, "descricao": "Familia D", "linha": 9999998}
+]
+
+
+Salva uma nova familia
+POST /familias
+> fabrica: 9999999
+> Content-Type: application/json
+{ "descricao":"Nome da familia" }
+< 201
+< Content-Type: application/json
+{ "status": "created", "url": "/familias/id/id_inserido" }
+
+Altera dados de uma familia
+PUT /familias/id/id_Familia
+> fabrica: 9999999
+> Content-Type: application/json
+{ "descricao":"Nome da familia" }
+< 200
+< Content-Type: application/json
+{ "status": "modified", "url": "/familias/id/id_inserido" }
+
+Exclui uma familia
+DELETE /familias/id/id_Familia
+> fabrica: 9999999
+< 200
+< Content-Type: application/json
+{ "status": "deleted" }
