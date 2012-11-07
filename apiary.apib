@@ -22,7 +22,28 @@ GET /familia
     }
 ]}
 
+--
+Teste
+--
+
 POST /familia
+< 200
+< Content-Type: application/json
+{ [
+    {
+        "familia": 1015,
+        "fabrica": 10,
+        "descricao": "Voip",
+        "linha": null,
+        "mao_de_obra_adicional_distribuidor": "0",
+        "mao_de_obra_familia": null,
+        "codigo_familia": null,
+        "paga_km": null,
+        "ativo": true
+    }
+] }
+
+DELETE /familia/
 < 200
 < Content-Type: application/json
 { [
