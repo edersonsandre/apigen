@@ -5,6 +5,13 @@ HOST: http://www.api.telecontrol.com.br/
 Bem vindo a Telecontrol API / RestFull
 ---
 
+GET /familia
+< 200
+< Content-Type: application/json
+{ "items": [
+  { "url": "/id/1", "product":"2ZY48XPZ", "quantity": 1, "name": "New socks", "price": 1.25 }
+] }
+
 POST /familia
 < 200
 < Content-Type: application/json
