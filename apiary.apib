@@ -8,9 +8,19 @@ Bem vindo a Telecontrol API / RestFull
 GET /familia
 < 200
 < Content-Type: application/json
-{ "items": [
-  { "url": "/id/1", "product":"2ZY48XPZ", "quantity": 1, "name": "New socks", "price": 1.25 }
-] }
+[
+    {
+        "familia": 1015,
+        "fabrica": 10,
+        "descricao": "Voip",
+        "linha": null,
+        "mao_de_obra_adicional_distribuidor": "0",
+        "mao_de_obra_familia": null,
+        "codigo_familia": null,
+        "paga_km": null,
+        "ativo": true
+    }
+]
 
 POST /familia
 < 200
